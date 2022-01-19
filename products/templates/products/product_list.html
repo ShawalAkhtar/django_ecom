@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title%}Products{% endblock %}
+
+{% block content%}
+<div class="container-fluid " style="margin: 75px 70px 50px 190px;">
+    
+    <div class="row ">
+    {%for product in products%}
+        
+    
+            <div class="m-3 card col-sm-3" style="width: 18rem;">
+                <img src="uploads/{{product.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.price|floatformat}} Rs</p>
+                    <a href="{{product.get_absolute_url}}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"3" %}
+        </div>
+            <div class="row">
+        {% endif %}
+        
+    {% endfor %}
+    
+    </div>
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            
+        {% endif %}
+
+        {% for i in products.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="page-item"><a class="page-link">{{ i }} <span class="sr-only">(current)</a></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+
+
+
+{% endblock %}
