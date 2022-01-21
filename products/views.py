@@ -4,8 +4,8 @@ from .models import Product
 from django.urls import reverse_lazy
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic import CreateView,UpdateView,DeleteView
-import stripe
-stripe.api_key = "sk_test_51KKOmyLagi5lWACb5VvNdwvTqHPXaJ1eNi4qLYDg8krG6eHtNWgVUNARjrJsg0Djo4ZycqGIRn8qz9N3nXudCu2U009qFiicvu"
+
+# Create your views here.
 
 def product_list(request):
     search=''
