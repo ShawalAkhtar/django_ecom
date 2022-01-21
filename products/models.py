@@ -7,7 +7,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     price = models.FloatField()
-    image = models.ImageField(upload_to='static/img')
+    image = models.ImageField(upload_to='staticfiles/img')
     slug = models.SlugField(unique=True)
 
     def __str__(self):
